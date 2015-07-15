@@ -1,0 +1,56 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% the new title page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+	\begin{center}
+		{\LARGE \facility}\\
+		\begin{figure}[h]
+			\hbox{}\hfill
+			\begin{minipage}[t]{10cm}
+				\centering
+				\includegraphics{figures/signet}
+			\end{minipage} 
+			\hfill\hbox{}
+		\end{figure}
+		{\large Department of \facility \\ 
+			\department \\[1.5cm]}
+		{\huge \type\\[.5cm]}
+		{\Large\bf  \titleName \\[1.0cm]}
+		{\small for obtaining the academic degree of \\ 
+			\degreeName \\[1cm]}
+		{\large \name}\\[0.2cm]
+		{\small \today}\\[0.8cm] {\small Reviewer:}\\[0.2cm] 
+		\insertReviewers
+		{\small \facility \\
+			Department of \facility \\
+			\address }
+	\end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Backpage of Titlepage: Bibliographie hints
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{minipage}{8.2cm}
+	\textbf{\lastName, \firstName:}\\
+	\emph{\titleName}\\ \type, 
+	\facility, \the\year.
+\end{minipage}
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Copy of the task
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% copy the the task
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Start new numbering with roman 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagenumbering{roman}
+\setcounter{page}{1}
