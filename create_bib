@@ -1,0 +1,22 @@
+#!/bin/bash - 
+#===============================================================================
+#
+#          FILE: create_bib.sh
+# 
+#         USAGE: ./create_bib.sh 
+# 
+#   DESCRIPTION: 
+# 
+#       OPTIONS: ---
+#  REQUIREMENTS: ---
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Jonas Zinn (), Jonas.S.Zinn@gmail.com
+#  ORGANIZATION: 
+#       CREATED: 22.05.2016 03:58
+#      REVISION:  ---
+#===============================================================================
+
+set -o nounset                              # Treat unset variables as an error
+ls -d bibtex/*.bib | sed 's#^\(.*\)$#\\bibliography{\1}#' > bibtex/bibtex.tex
+

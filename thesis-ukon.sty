@@ -2,6 +2,11 @@
 
 \ProvidesPackage{thesis-ukon}[2015/07/14 0.1 thesis-ukon Package]
 
+\def\globalDraft{0}
+
+\DeclareOption{draft2}{\edef\globalDraft{1}}
+
+\ProcessOptions
 
 \usepackage{epsf}
 \usepackage[dvips]{graphicx}
@@ -10,14 +15,47 @@
 \usepackage{enumitem}
 \usepackage{typearea}
 \usepackage{import}
+\usepackage{textcomp}
 \usepackage{gensymb}
-\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[usenames,dvipsnames,tabel]{xcolor}
 \usepackage{tikz}
 \usepackage{tikzscale}
 \usepackage{caption}
 \usepackage{xstring}
-\usetikzlibrary{positioning,fit,patterns,calc}
+\usepackage{appendix}
+\usepackage{ifthen} % Packet für if then else
+\usepackage{multicol}
+\usepackage{scrextend}
 
+\usetikzlibrary{calc,positioning,shapes,fit,shapes.multipart,patterns}
+
+
+\setlist[enumerate]{wide=0.1cm}
+
+\setlength{\columnseprule}{1pt}
+\def\columnseprulecolor{\color{blue}}
+
+
+\ifthenelse{\equal{\globalDraft}{1}}{
+	\usepackage[textsize=footnotesize]{todonotes}
+%	\usepackage{menukeys}
+	\usepackage[color]{showkeys}
+	\setlength{\marginparwidth}{2cm}
+		
+	\definecolor{refkey}{named}{Cyan}
+	\definecolor{labelkey}{named}{YellowOrange}
+	\renewcommand*{\showkeyslabelformat}[1]{%
+		\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%  save the current one
+			\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
+			\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
+			\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
+			\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+			\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
+			\do\Y\do\Z}%
+		\fbox{\vbox{\hsize=1.7cm\raggedright\noindent\normalfont\small\url{#1}\par}}}
+}{\newcommand\todo[1]{}}
+
+%\usepackage{refcheck}
 
 \def\ps@reportpage
 {
@@ -179,10 +217,12 @@ filecolor=blue,
 \def\Chapter#1{
 	\subimport{chapter#1/}{chapter#1/chapter.tex}
 	\cleartoleftpage
+%	\clearpage
 }
 \def\ChapterS#1{
 	\subimport{chapter#1/}{chapter#1/chapter#1.tex}
 	\cleartoleftpage
+%	\clearpage
 }
 
 \newcounter{chapters}
@@ -193,11 +233,15 @@ filecolor=blue,
 	\setcounter{loops}{0}
 	\whiledo {\value{loops} < 1}%
 	{
-		\IfFileExists{Chapter\thechapters/chapter.tex}
+		\IfFileExists{chapter\thechapters/chapter.tex}
 		{\Chapter\thechapters}
-		{\IfFileExists{Chapter\thechapters/chapter\thechapters.tex}
+		{\IfFileExists{chapter\thechapters/chapter\thechapters.tex}
 		{\ChapterS\thechapters}
 		{\setcounter{loops}{1}}}
 		\stepcounter{chapters}
 	}
 }
+
+\renewcommand*{\glsclearpage}{}
+
+\endinput

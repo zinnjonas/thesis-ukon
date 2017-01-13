@@ -1,7 +1,7 @@
 \documentclass[twoside,12pt]{report}
 
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\usepackage[ngerman]{babel}
 \usepackage[backend=biber,sorting=none]{biblatex}
 \usepackage[babel]{csquotes}
 \usepackage[nonumberlist, %no pagenumber
@@ -10,12 +10,18 @@ toc,		  %show in table of contents
 nomain		  %shown as section in the toc
 ]{glossaries}
 
-\usepackage{thesis-ukon}
+\usepackage[
+%draft2
+]{thesis-ukon}
+
+\graphicspath{{figures/}{tikz/}}
 
 %enable Glossar-Commands
 \makeglossaries
 
-\bibliography{bibtex/thesis.bib}
+\input{glossaries/acronym}
+\input{tikzConfig}
+\input{bibtex/bibtex}
 
 \Facility{facilityName}
 \Address{Zipcode \\ Country}
@@ -33,12 +39,19 @@ nomain		  %shown as section in the toc
 	\input{structure/title}
 	\cleardoublepage
 	\input{structure/toc} % table of content
+	\pagenumbering{arabic} % change the page numbers back to arabic and start again from 1
+	
+	\ifthenelse{\equal{\globalDraft}{1}}{
+		\listoftodos
+		\clearpage
+	}{}
+	
+	\setcounter{page}{1}
+	\Chapters % Read all Chapters automaticly 
+	\input{structure/appendix}
+	\input{structure/reference} % insert all references
 	\input{structure/lof} % list of figures
 	\input{structure/lot} % list of tables
 	\input{structure/loa} % list of Acronyms
-	\pagenumbering{arabic} % change the page numbers back to arabic and start again from 1
-	\setcounter{page}{1}
-	\Chapters % Read all Chapters automaticly 
-	\input{structure/reference} % insert all references
 	\input{structure/disclaimer} % add a disclaimer/declaration
 \end{document}
